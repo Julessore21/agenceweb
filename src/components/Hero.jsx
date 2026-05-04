@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowUpRight, Play, Clock, Star, Zap } from "lucide-react";
 import BlurText from "./BlurText";
-import fondVideo from "../assets/fond.mp4";
+const HERO_VIDEO = "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4";
 
 const partners = ["Stripe", "Vercel", "Linear", "Notion", "Figma"];
 
@@ -15,28 +15,21 @@ const ease = [0.16, 1, 0.3, 1];
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden" style={{ height: "1000px" }}>
-      {/* Vidéo de fond — commence tout en haut, couvre toute la section */}
+    <section className="relative overflow-visible" style={{ height: "1000px" }}>
+      {/* Vidéo de fond */}
       <video
-        src={fondVideo}
+        src={HERO_VIDEO}
         poster="/images/hero_bg.jpeg"
         autoPlay loop muted playsInline
-        className="absolute left-0 w-full h-full object-cover z-0"
-        style={{ top: 0 }}
+        className="absolute left-0 w-full h-auto object-contain z-0"
+        style={{ top: "20%" }}
       />
 
-      {/* Assombrissement général */}
-      <div className="absolute inset-0 bg-black/45 z-[1] pointer-events-none" />
+      <div className="absolute inset-0 bg-black/5 z-0 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 pointer-events-none z-0"
+        style={{ height: "300px", background: "linear-gradient(to bottom, transparent, black)" }} />
 
-      {/* Fondu haut — léger, laisse voir la vidéo */}
-      <div className="absolute top-0 left-0 right-0 pointer-events-none z-[2]"
-        style={{ height: "220px", background: "linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, transparent 100%)" }} />
-
-      {/* Fondu bas — raccord avec le reste de la page */}
-      <div className="absolute bottom-0 left-0 right-0 pointer-events-none z-[2]"
-        style={{ height: "280px", background: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 60%, transparent 100%)" }} />
-
-      <div className="relative z-[3] flex flex-col items-center text-center px-6" style={{ paddingTop: "150px" }}>
+      <div className="relative z-10 flex flex-col items-center text-center px-6" style={{ paddingTop: "150px" }}>
 
         {/* Badge intro */}
         <motion.div
